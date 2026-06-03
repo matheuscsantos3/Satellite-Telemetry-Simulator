@@ -4,6 +4,7 @@ import ddr.DDRMemory;
 import model.DataPacket;
 import network.Transmitter;
 import satellite.Satellite;
+import server.GroundStation;
 
 public class Main {
 
@@ -15,8 +16,11 @@ public class Main {
         // Creates the DDR memory that stores generated packets
         DDRMemory memory = new DDRMemory();
 
+        // Creates the ground station
+        GroundStation groundStation = new GroundStation();
+
         // Creates the transmitter module
-        Transmitter transmitter = new Transmitter();
+        Transmitter transmitter = new Transmitter(groundStation);
 
         // Generates and stores 10 telemetry packets
         for (int i = 0; i < 10; i++) {
@@ -34,9 +38,9 @@ public class Main {
             System.out.println(packet);
         }
 
-        // Simulates packet transmission
+        // Simulates packet transmission to the ground station
         for (DataPacket packet : memory.getAllPackets()) {
-            transmitter.send(packet);
+            transmitter.send(packet.toString());
         }
     }
 }

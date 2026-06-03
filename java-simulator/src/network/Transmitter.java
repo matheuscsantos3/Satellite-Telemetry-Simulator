@@ -1,10 +1,19 @@
 package network;
 
-import model.DataPacket;
+import server.GroundStation;
 
 public class Transmitter {
 
-    public void send(DataPacket packet) {
-        System.out.println("Sending packet: " + packet);
+    private GroundStation groundStation;
+
+    public Transmitter(GroundStation groundStation) {
+        this.groundStation = groundStation;
+    }
+
+    public void send(String data) {
+
+        System.out.println("Sending packet: " + data);
+
+        groundStation.receive(data);
     }
 }
