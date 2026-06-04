@@ -45,6 +45,8 @@ public class Main {
         }
 
         // Connects to the telemetry server
-        transmitter.connect();
+        for (DataPacket packet : memory.getAllPackets()) {
+            transmitter.send(packet.toString());
+        }
     }
 }

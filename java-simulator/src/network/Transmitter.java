@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class Transmitter {
 
-    public void connect() {
+    public void send(String data) {
 
         try {
 
@@ -17,7 +17,7 @@ public class Transmitter {
             PrintWriter writer =
                     new PrintWriter(socket.getOutputStream(), true);
 
-            writer.println("Telemetry packet from satellite");
+            writer.println(data);
 
             socket.close();
 
