@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class TelemetryServer {
 
@@ -23,6 +24,12 @@ public class TelemetryServer {
             System.out.println("Waiting for connection...");
             System.out.println("================================");
 
+            Socket clientSocket = serverSocket.accept();
+
+            System.out.println("Client connected: "
+                    + clientSocket.getInetAddress());
+
+            clientSocket.close();
             serverSocket.close();
 
         } catch (IOException e) {
