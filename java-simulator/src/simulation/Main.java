@@ -5,10 +5,15 @@ import model.DataPacket;
 import network.Transmitter;
 import satellite.Satellite;
 import server.GroundStation;
+import server.TelemetryServer;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        // Starts the telemetry server
+        TelemetryServer server = new TelemetryServer(5050);
+        server.start();
 
         // Creates the satellite simulator
         Satellite satellite = new Satellite();
