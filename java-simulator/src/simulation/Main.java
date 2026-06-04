@@ -4,16 +4,20 @@ import ddr.DDRMemory;
 import model.DataPacket;
 import network.Transmitter;
 import satellite.Satellite;
-import server.GroundStation;
 import server.TelemetryServer;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // Starts the telemetry server
+        // Starts the telemetry server in a separate thread
         TelemetryServer server = new TelemetryServer(5050);
-        server.start();
+
+        Thread serverThread = new Thread(() -> {
+            server.start();
+        });
+
+        serverThread.start();
 
         // Creates the satellite simulator
         Satellite satellite = new Satellite();
@@ -21,11 +25,8 @@ public class Main {
         // Creates the DDR memory that stores generated packets
         DDRMemory memory = new DDRMemory();
 
-        // Creates the ground station
-        GroundStation groundStation = new GroundStation();
-
         // Creates the transmitter module
-        Transmitter transmitter = new Transmitter(groundStation);
+        Transmitter transmitter = new Transmitter();
 
         // Generates and stores 10 telemetry packets
         for (int i = 0; i < 10; i++) {
@@ -43,9 +44,7 @@ public class Main {
             System.out.println(packet);
         }
 
-        // Simulates packet transmission to the ground station
-        for (DataPacket packet : memory.getAllPackets()) {
-            transmitter.send(packet.toString());
-        }
+        // Connects to the telemetry server
+        transmitter.connect();
     }
 }

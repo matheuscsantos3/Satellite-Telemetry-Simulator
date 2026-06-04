@@ -1,19 +1,23 @@
 package network;
 
-import server.GroundStation;
+import java.io.IOException;
+import java.net.Socket;
 
 public class Transmitter {
 
-    private GroundStation groundStation;
+    public void connect() {
 
-    public Transmitter(GroundStation groundStation) {
-        this.groundStation = groundStation;
-    }
+        try {
 
-    public void send(String data) {
+            Socket socket = new Socket("localhost", 5050);
 
-        System.out.println("Sending packet: " + data);
+            System.out.println("Connected to telemetry server");
 
-        groundStation.receive(data);
+            socket.close();
+
+        } catch (IOException e) {
+
+            System.out.println("Connection error: " + e.getMessage());
+        }
     }
 }
