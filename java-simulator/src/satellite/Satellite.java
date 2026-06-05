@@ -6,10 +6,20 @@ import model.DataPacket;
 
 public class Satellite {
 
+    private String id;
+
     private Random random;
 
-    public Satellite() {
+    public Satellite(String id) {
+
+        this.id = id;
+
         this.random = new Random();
+    }
+
+    public String getId() {
+
+        return id;
     }
 
     public DataPacket generateData() {

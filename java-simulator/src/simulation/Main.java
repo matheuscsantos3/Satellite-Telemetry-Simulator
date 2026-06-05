@@ -21,8 +21,10 @@ public class Main {
 
         serverThread.start();
 
-        // Creates the satellite simulator
-        Satellite satellite = new Satellite();
+        // Creates the satellite simulators
+        Satellite satellite1 = new Satellite("SAT-1");
+        Satellite satellite2 = new Satellite("SAT-2");
+        Satellite satellite3 = new Satellite("SAT-3");
 
         // Creates the DDR memory that stores generated packets
         DDRMemory memory = new DDRMemory();
@@ -36,16 +38,32 @@ public class Main {
         // Creates the transmitter module
         Transmitter transmitter = new Transmitter();
 
-        // Generates and stores 10 telemetry packets
+        // Generates and stores telemetry packets
         for (int i = 0; i < 10; i++) {
 
-            DataPacket packet = satellite.generateData();
+            DataPacket packet1 = satellite1.generateData();
 
-            memory.store(packet);
+            memory.store(packet1);
 
-            csvExporter.export(packet);
+            csvExporter.export(packet1);
 
-            jsonExporter.export(packet);
+            jsonExporter.export(packet1);
+
+            DataPacket packet2 = satellite2.generateData();
+
+            memory.store(packet2);
+
+            csvExporter.export(packet2);
+
+            jsonExporter.export(packet2);
+
+            DataPacket packet3 = satellite3.generateData();
+
+            memory.store(packet3);
+
+            csvExporter.export(packet3);
+
+            jsonExporter.export(packet3);
         }
 
         // Shows how many packets were stored
