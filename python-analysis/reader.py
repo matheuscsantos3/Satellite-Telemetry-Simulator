@@ -24,6 +24,13 @@ print("Packets:", len(temperatures))
 print("Average temperature:", sum(temperatures) / len(temperatures))
 print("Average radiation:", sum(radiations) / len(radiations))
 
+# Min and max values
+print("Max temperature:", max(temperatures))
+print("Min temperature:", min(temperatures))
+
+print("Max radiation:", max(radiations))
+print("Min radiation:", min(radiations))
+
 # Temperature chart
 plt.plot(temperatures, label="Temperature")
 
