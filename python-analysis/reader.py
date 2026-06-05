@@ -22,7 +22,7 @@ with open("../java-simulator/telemetry.csv", "r") as file:
 # Basic statistics
 print("Packets:", len(temperatures))
 
-print("Average temperature:", sum(temperatures) / len(temperatures))
+print(f"Average temperature: {sum(temperatures) / len(temperatures):.2f}")
 print("Average radiation:", sum(radiations) / len(radiations))
 
 # Min and max values
