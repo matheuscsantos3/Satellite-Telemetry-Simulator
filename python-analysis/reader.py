@@ -1,4 +1,5 @@
 import re
+import matplotlib.pyplot as plt
 
 temperatures = []
 radiations = []
@@ -19,3 +20,11 @@ print("Packets:", len(temperatures))
 
 print("Average temperature:", sum(temperatures) / len(temperatures))
 print("Average radiation:", sum(radiations) / len(radiations))
+
+plt.plot(temperatures)
+
+plt.title("Temperature Telemetry")
+plt.xlabel("Packet")
+plt.ylabel("Temperature")
+
+plt.show()
