@@ -1,6 +1,6 @@
 import re
 import matplotlib.pyplot as plt
-from statistics import median
+from statistics import median, stdev
 
 # Telemetry data storage
 temperatures = []
@@ -35,6 +35,10 @@ print("Min radiation:", min(radiations))
 # Median values
 print("Median temperature:", median(temperatures))
 print("Median radiation:", median(radiations))
+
+# Standard deviation
+print("Temperature deviation:", stdev(temperatures))
+print("Radiation deviation:", stdev(radiations))
 
 # Temperature chart
 plt.plot(temperatures, label="Temperature")
