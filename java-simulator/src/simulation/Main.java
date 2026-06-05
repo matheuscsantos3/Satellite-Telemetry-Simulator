@@ -1,6 +1,8 @@
 package simulation;
 
 import ddr.DDRMemory;
+import export.CSVExporter;
+import export.JSONExporter;
 import model.DataPacket;
 import network.Transmitter;
 import satellite.Satellite;
@@ -25,6 +27,12 @@ public class Main {
         // Creates the DDR memory that stores generated packets
         DDRMemory memory = new DDRMemory();
 
+        // Creates the CSV exporter
+        CSVExporter csvExporter = new CSVExporter();
+
+        // Creates the JSON exporter
+        JSONExporter jsonExporter = new JSONExporter();
+
         // Creates the transmitter module
         Transmitter transmitter = new Transmitter();
 
@@ -34,6 +42,10 @@ public class Main {
             DataPacket packet = satellite.generateData();
 
             memory.store(packet);
+
+            csvExporter.export(packet);
+
+            jsonExporter.export(packet);
         }
 
         // Shows how many packets were stored
