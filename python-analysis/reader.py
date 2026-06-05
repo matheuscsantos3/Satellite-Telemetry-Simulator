@@ -1,9 +1,11 @@
 import re
 import matplotlib.pyplot as plt
 
+# Telemetry data storage
 temperatures = []
 radiations = []
 
+# Read telemetry file
 with open("../java-simulator/telemetry.csv", "r") as file:
 
     for line in file:
@@ -16,15 +18,23 @@ with open("../java-simulator/telemetry.csv", "r") as file:
             temperatures.append(float(temp_match.group(1)))
             radiations.append(float(rad_match.group(1)))
 
+# Basic statistics
 print("Packets:", len(temperatures))
 
 print("Average temperature:", sum(temperatures) / len(temperatures))
 print("Average radiation:", sum(radiations) / len(radiations))
 
-plt.plot(temperatures)
+# Temperature chart
+plt.plot(temperatures, label="Temperature")
 
-plt.title("Temperature Telemetry")
+# Radiation chart
+plt.plot(radiations, label="Radiation")
+
+# Chart settings
+plt.title("Telemetry Data")
 plt.xlabel("Packet")
-plt.ylabel("Temperature")
+plt.ylabel("Value")
+
+plt.legend()
 
 plt.show()
