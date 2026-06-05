@@ -3,12 +3,26 @@ package network;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Random;
 
 public class Transmitter {
+
+    private Random random = new Random();
 
     public void send(String data) {
 
         try {
+
+            // Simulated transmission delay
+            Thread.sleep(500);
+
+            // Simulated packet loss (20%)
+            if (random.nextInt(100) < 20) {
+
+                System.out.println("Packet lost");
+
+                return;
+            }
 
             Socket socket = new Socket("localhost", 5050);
 
@@ -24,6 +38,10 @@ public class Transmitter {
         } catch (IOException e) {
 
             System.out.println("Connection error: " + e.getMessage());
+
+        } catch (InterruptedException e) {
+
+            System.out.println("Transmission interrupted");
         }
     }
 }
