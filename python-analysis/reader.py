@@ -23,22 +23,22 @@ with open("../java-simulator/telemetry.csv", "r") as file:
 print("Packets:", len(temperatures))
 
 print(f"Average temperature: {sum(temperatures) / len(temperatures):.2f}")
-print("Average radiation:", sum(radiations) / len(radiations))
+print(f"Average radiation: {sum(radiations) / len(radiations):.2f}")
 
 # Min and max values
-print("Max temperature:", max(temperatures))
-print("Min temperature:", min(temperatures))
+print(f"Max temperature: {max(temperatures):.2f}")
+print(f"Min temperature: {min(temperatures):.2f}")
 
-print("Max radiation:", max(radiations))
-print("Min radiation:", min(radiations))
+print(f"Max radiation: {max(radiations):.2f}")
+print(f"Min radiation: {min(radiations):.2f}")
 
 # Median values
-print("Median temperature:", median(temperatures))
-print("Median radiation:", median(radiations))
+print(f"Median temperature: {median(temperatures):.2f}")
+print(f"Median radiation: {median(radiations):.2f}")
 
 # Standard deviation
-print("Temperature deviation:", stdev(temperatures))
-print("Radiation deviation:", stdev(radiations))
+print(f"Temperature deviation: {stdev(temperatures):.2f}")
+print(f"Radiation deviation: {stdev(radiations):.2f}")
 
 # Temperature chart
 plt.plot(temperatures, label="Temperature")
