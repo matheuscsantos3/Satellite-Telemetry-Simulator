@@ -53,4 +53,7 @@ plt.ylabel("Value")
 
 plt.legend()
 
+# Save chart
+plt.savefig("telemetry_chart.png")
+
 plt.show()
