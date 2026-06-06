@@ -13,7 +13,7 @@ public class DDRMemory {
         this.storage = new ArrayList<>();
     }
 
-    public void store(DataPacket packet) {
+    public synchronized void store(DataPacket packet) {
         storage.add(packet);
     }
 
