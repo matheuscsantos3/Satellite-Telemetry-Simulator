@@ -1,8 +1,9 @@
 package network;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.Random;
 
 public class Transmitter {
@@ -24,14 +25,23 @@ public class Transmitter {
                 return;
             }
 
-            Socket socket = new Socket("localhost", 5050);
+            DatagramSocket socket = new DatagramSocket();
 
-            System.out.println("Connected to telemetry server");
+            byte[] buffer = data.getBytes();
 
-            PrintWriter writer =
-                    new PrintWriter(socket.getOutputStream(), true);
+            InetAddress address =
+                    InetAddress.getByName("localhost");
 
-            writer.println(data);
+            DatagramPacket packet =
+                    new DatagramPacket(
+                            buffer,
+                            buffer.length,
+                            address,
+                            5050);
+
+            socket.send(packet);
+
+            System.out.println("Packet sent via UDP");
 
             socket.close();
 

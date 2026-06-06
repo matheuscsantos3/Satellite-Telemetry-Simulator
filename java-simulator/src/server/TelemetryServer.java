@@ -1,10 +1,8 @@
 package server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 public class TelemetryServer {
 
@@ -18,24 +16,29 @@ public class TelemetryServer {
 
         try {
 
-            ServerSocket serverSocket = new ServerSocket(port);
+            DatagramSocket socket =
+                    new DatagramSocket(port);
 
             System.out.println("Telemetry Server started on port " + port);
 
+            byte[] buffer = new byte[1024];
+
             while (true) {
 
-                Socket clientSocket = serverSocket.accept();
+                DatagramPacket packet =
+                        new DatagramPacket(
+                                buffer,
+                                buffer.length);
 
-                BufferedReader reader =
-                        new BufferedReader(
-                                new InputStreamReader(
-                                        clientSocket.getInputStream()));
+                socket.receive(packet);
 
-                String message = reader.readLine();
+                String message =
+                        new String(
+                                packet.getData(),
+                                0,
+                                packet.getLength());
 
                 System.out.println("Received: " + message);
-
-                clientSocket.close();
             }
 
         } catch (IOException e) {
