@@ -1,13 +1,14 @@
 import re
 import matplotlib.pyplot as plt
 from statistics import median, stdev
+from pathlib import Path
 
 # Telemetry data storage
 temperatures = []
 radiations = []
 
 # Read telemetry file
-with open("../java-simulator/telemetry.csv", "r") as file:
+with open(Path(__file__).parent.parent / "java-simulator" / "telemetry.csv", "r") as file:
 
     for line in file:
 
